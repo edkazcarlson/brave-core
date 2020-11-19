@@ -13,6 +13,8 @@ namespace features {
 const base::Feature kBraveAdblockCosmeticFiltering{
     "BraveAdblockCosmeticFiltering",
     base::FEATURE_ENABLED_BY_DEFAULT};
+const base::Feature kBraveDomainBlock{"BraveDomainBlock",
+                                      base::FEATURE_ENABLED_BY_DEFAULT};
 
 }  // namespace features
 }  // namespace brave_shields
