@@ -498,7 +498,7 @@ BATClassAdsBridge(BOOL, isDebug, setDebug, g_is_debug)
     urls.push_back(base::SysNSStringToUTF8(redirectURL.absoluteString));
   }
   urls.push_back(urlString);
-  ads->OnPageLoaded((int32_t)tabId, -1, false, urls,
+  ads->OnTextLoaded((int32_t)tabId, -1, false, urls,
                     base::SysNSStringToUTF8(text));
 }
 
