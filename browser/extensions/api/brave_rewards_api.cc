@@ -1137,7 +1137,9 @@ BraveRewardsGetAdsEstimatedEarningsFunction::Run() {
     return RespondNow(Error("Ads service is not initialized"));
   }
 
-  ads_service_->GetStatement(base::Bind(
+  AddRef();  // Balanced in OnAdsEstimatedEarnings().
+
+  ads_service_->GetStatement(base::BindOnce(
       &BraveRewardsGetAdsEstimatedEarningsFunction::OnAdsEstimatedEarnings,
       this));
   return RespondLater();
@@ -1150,6 +1152,8 @@ void BraveRewardsGetAdsEstimatedEarningsFunction::OnAdsEstimatedEarnings(
     const uint64_t ads_received_this_month,
     const double earnings_this_month,
     const double earnings_last_month) {
+  Release();  // Balanced in Run()
+
   Respond(OneArgument(base::Value(estimated_pending_rewards)));
 }
 
